@@ -3,20 +3,20 @@ import { ref } from "vue";
 import { XIcon } from "@heroicons/vue/outline";
 
 const props = defineProps({
-  title: String,
-  likes: Number,
+  modal: Boolean,
+  closable: Boolean,
 });
 
 const isOpen = ref(false);
 </script>
 
 <template>
-  <button @click="isOpen = true" class="btn btn-success">dialog</button>
+  <button @click="isOpen = true" class="btn btn-success">Dialog</button>
 
   <Teleport to="body">
     <Transition name="fade">
       <div
-        @click.self="isOpen = false"
+        @click.self="props.modal ? (isOpen = false) : ''"
         v-if="isOpen"
         id="app-dialog-bg"
         class="app-dialog-bg"
@@ -28,7 +28,11 @@ const isOpen = ref(false);
             </div>
 
             <div class="flex-none">
-              <button @click="isOpen = false" class="app-dialog-close-button">
+              <button
+                v-if="!props.closable"
+                @click="isOpen = false"
+                class="app-dialog-close-button"
+              >
                 <x-icon class="h-5 w-5" />
               </button>
             </div>
