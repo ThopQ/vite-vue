@@ -29,11 +29,11 @@ const isOpen = ref(false);
 
             <div class="flex-none">
               <button
-                v-if="!props.closable"
+                v-if="props.closable"
                 @click="isOpen = false"
                 class="app-dialog-close-button"
               >
-                <x-icon class="h-5 w-5" />
+                <x-icon />
               </button>
             </div>
           </div>
@@ -77,7 +77,7 @@ const isOpen = ref(false);
 }
 
 .app-dialog-close-button {
-  @apply btn btn-sm btn-ghost;
+  @apply btn btn-circle btn-ghost btn-sm;
 }
 
 .fade-enter-active,
