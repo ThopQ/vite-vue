@@ -1,6 +1,9 @@
 <script setup>
 import { ref } from "vue";
 import { XIcon } from "@heroicons/vue/outline";
+import useCounterStore from "~/store/counter";
+
+const store = useCounterStore();
 
 const props = defineProps({
   modal: Boolean,
@@ -8,10 +11,15 @@ const props = defineProps({
 });
 
 const isOpen = ref(false);
+
+function openDialog() {
+  isOpen.value = true;
+  store.increment(1);
+}
 </script>
 
 <template>
-  <button @click="isOpen = true" class="btn btn-success">Dialog</button>
+  <button @click="openDialog" class="btn btn-success">Dialog</button>
 
   <Teleport to="body">
     <Transition name="fade">
